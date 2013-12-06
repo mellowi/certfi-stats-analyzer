@@ -41,40 +41,17 @@
 
 <a href="/output/date.txt">Download data</a>
 
-<script src="//codeorigin.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="//code.highcharts.com/highcharts.js"></script>
 <script src="//code.highcharts.com/modules/exporting.js"></script>
 <script src="/charts.js"></script>
 
 <script type="text/javascript">
 $(function () {
-  var keys;
-  var values;
   var data = <%- data %>;
-
-  keys = [];
-  values = [];
-  for(var key in data.category) {
-    keys.push(key);
-    values.push(data.category[key]);
-  }
-  createChart("categoriesChart", "Frequencies of incident categories", keys, values, true);
-
-  keys = [];
-  values = [];
-  for(var key in data.location) {
-    keys.push(key);
-    values.push(data.location[key]);
-  }
-  createChart("locationsChart", "Frequencies of incident locations", keys, values, false);
-
-  keys = [];
-  values = [];
-  for(var key in data.date) {
-    keys.push(key);
-    values.push(data.date[key]);
-  }
-  createChart("datesChart", "Frequencies of incident dates", keys, values, false);
+  createChart("categoriesChart", "Frequencies of incident categories", data.category, true);
+  createChart("locationsChart", "Frequencies of incident locations", data.location, false);
+  createChart("datesChart", "Frequencies of incident dates", data.date, false);
 });
 </script>
 
