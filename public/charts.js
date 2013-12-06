@@ -1,4 +1,4 @@
-var createChart = function (idElement, titleText, keys, values, ticks, categoryLabels) {
+var createChart = function (idElement, titleText, keys, values, categoryLabels) {
   $("#" + idElement).highcharts({
     chart: {
       type: "column"
