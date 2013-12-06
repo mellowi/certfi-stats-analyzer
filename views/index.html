@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CERT-FI Statistics Analyzer</title>
+
+  <link href="/styles.css" rel="stylesheet">
+</head>
+<body>
+
+<h1>CERT-FI Statistics Analyzer</h1>
+
+<% if(message) { %>
+<div class="message">
+<%= message %>
+</div>
+<% } %>
+
+<h2>Data</h2>
+
+<p>The analyzed data is available for download in separate packages.</p>
+<a href="/update">Update used data</a> (This operation is slow!)
+
+<h3>Frequencies of incident categories</h2>
+
+<div id="categoriesChart"></div>
+
+<a href="/output/category.txt">Download data</a>
+
+<h3>Frequencies of incident locations</h2>
+
+<div id="locationsChart"></div>
+
+<a href="/output/location.txt">Download data</a>
+
+<h3>Frequencies of incident dates</h2>
+
+<div id="datesChart"></div>
+
+<a href="/output/date.txt">Download data</a>
+
+<script src="//codeorigin.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//code.highcharts.com/highcharts.js"></script>
+<script src="//code.highcharts.com/modules/exporting.js"></script>
+<script src="/charts.js"></script>
+
+<script type="text/javascript">
+$(function () {
+  var keys;
+  var values;
+  var data = <%- data %>;
+
+  keys = [];
+  values = [];
+  for(var key in data.category) {
+    keys.push(key);
+    values.push(data.category[key]);
+  }
+  createChart("categoriesChart", "Frequencies of incident categories", keys, values, [0, 10, 100, 1000, 10000, 100000, 1000000], true);
+
+  keys = [];
+  values = [];
+  for(var key in data.location) {
+    keys.push(key);
+    values.push(data.location[key]);
+  }
+  createChart("locationsChart", "Frequencies of incident locations", keys, values, null, false);
+
+  keys = [];
+  values = [];
+  for(var key in data.date) {
+    keys.push(key);
+    values.push(data.date[key]);
+  }
+  createChart("datesChart", "Frequencies of incident dates", keys, values, null, false);
+});
+</script>
+
+</body>
+</html>
+

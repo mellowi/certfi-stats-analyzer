@@ -1,0 +1,15 @@
+{
+  "name": "certfi-stats-analyzer",
+  "version": "0.0.1",
+  "engines": {
+    "node": "0.10.*"
+  },
+  "dependencies": {
+    "express": "3.4.4",
+    "ejs": "0.8.5",
+    "unzip": "0.1.9",
+    "fstream": "0.1.25",
+    "lodash-node": "2.4.1",
+    "redis": "0.9.1"
+  }
+}
